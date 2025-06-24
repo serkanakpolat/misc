@@ -1,20 +1,20 @@
 //@title Endless Strain
 //@by    Serkan Akpolat
 //@date  23/06/2025
-
+setcpm(30)
 var drums = sound("<bd hh <rim hh bd> <bd rim hh>>*8")
-  .bank("rolandcompurhythm1000")
-  .gain(0.4)
+.bank("rolandcompurhythm1000")
+.gain(0.4)
 
-var root1 = note("<a3 e4 a4 c5 a4 e4>*8").sound("gm_fx_atmosphere").color("blue").gain(0.7)
-var root2 = note("<f3 e4 a4 b4 a4 e4>*8").sound("gm_pad_choir").color("white")
-var root3 = note("<g3 e4 a4 b4 a4 e4>*8").sound("gm_pad_choir").color("magenta")
+var root1 = note("<a3 e4 a4 c5 a4 e4>*8").sound("gm_lead_6_voice").color("blue")
+var root2 = note("<f3 e4 a4 b4 a4 e4>*8").sound("gm_lead_6_voice").color("white")
+var root3 = note("<g3 e4 a4 b4 a4 e4>*8").sound("gm_lead_6_voice").color("magenta")
 
 var L = 1
 $: arrange(
-  [L*2, stack(root1,drums)],
+  [L*2, stack(root1,drums.euclid(3,8))],
   [L*1, stack(root2,drums)],
   [L*1, stack(root3,drums.euclid(3,8))],
-  [L*2, stack(root1.euclid(5,8),drums.euclid(6,8))],
-  //[L*2, root1.sound("gm_piano").euclid(3,8)]
+  [L*2, stack(root1.euclid(5,8).sound("gm_fx_atmosphere"),drums.euclid(6,8))],
   ).pianoroll()
+
