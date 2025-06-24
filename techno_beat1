@@ -1,0 +1,12 @@
+//@title Techno Beat
+//@by    Serkan Akpolat
+//@date  24/06/2025
+
+sound("<bd hh <rim hh bd> <bd rim hh>>*8").room("<0.2>").bank("rolandcompurhythm1000")
+//Bass
+stack(
+sound("<bd:2 bd bd bd>*4").bank("rolandmc202").room("<0.2>").roomsize("4"),
+sound("<sd:1 - - - - - - - >*8").bank("ace"),
+sound("< - - -  - - - - [perc perc]  >*8").sound("9000_perc"),
+ note("<e3 e3 e3 e3>*8").euclidLegatoRot(3,5,2).clip(0.4).sound("supersaw").room("<0.2>").roomsize("4"),
+ note("< - - - - - - - - - - - - [ - f3] d3 [e3 e3] -  >*8").sound("supersaw").room("<0.2>").delay(1).echo(1,1,1))
