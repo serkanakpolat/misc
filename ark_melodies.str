@@ -1,0 +1,37 @@
+//@title ARK Melodies
+//@by    Serkan Akpolat
+//@date  25/06/2025
+
+// Drumstack
+var sonar          = s("< - wind - wind>*2").sound("wind:3")
+var bassdrums      = sound("<bd bd bd bd>*4").bank("rolandmc202")
+var bassdrums_hard = sound("<bd bd bd bd>*4").bank("rolandmc202").gain(3)
+var gm_synth_drums = sound("<g4 [g4 g4] - ->*16").sound("gm_synth_drum")
+var snaredrums     = sound("<sd:1 - - - - - - - >*8").bank("ace")
+var percussions    = sound("< - - -  - - - - [perc perc*16]  >*8").sound("9000_perc")
+
+var continues_supersaw = note("<- e3 - e3>*8")
+.clip(0.7).sound("supersaw")
+.echo(1,0.5,0.5).attack("<0 .1 .2>")
+
+var first_mel  = note("< - - - - - - - - - - e3 - [ - f3] d3 [e3 e3] -  >*8")
+.sound("supersaw").room("<0.2>").delay(2)
+
+var second_mel = stack(
+ note("< - - - - - - - - - - - - [ g3 g3] [ g3 g3] [f3 f3] e  >*8"),
+ note("< - - - - - - - - - - - - [ g4 g4] [ g4 g4] [f4 f4] e3  >*8")
+).sound("supersaw").room("<0.2>").delay(1)
+
+var serkan_Vsample = sound("<serkan>").gain(4)
+var intro = stack(sonar, serkan_Vsample) // * 4
+var intro_follow = stack(bassdrums_hard , gm_synth_drums, snaredrums, percussions)
+var bassdrums_only = stack(bassdrums, sonar)
+var L = 1
+$: arrange(
+  [L*2, stack(intro)],
+  [L*2, stack(intro_follow,continues_supersaw)],
+  [L*2, stack(intro_follow, first_mel)],
+  [L*2, stack(bassdrums_only,intro)],
+  [L*4, stack(intro_follow, first_mel, continues_supersaw)],
+  [L*4, stack(intro_follow, second_mel, continues_supersaw)],
+  )
